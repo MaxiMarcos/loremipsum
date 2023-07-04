@@ -1,45 +1,50 @@
 // Creamos el modelo para trabaja con la BD
 
-const { Sequelize} = require('sequelize')
+const { Model, DataTypes , Sequelize} = require('sequelize')
 const { dbInstance } = require('../db/sequelize-config')
 
-//class User extends Model {}
 
-const User = dbInstance.define('User',{
-    id: {
+// Conectando a base de datos
+
+dbInstance
+    .authenticate()
+    .then(() => {
+        console.log('Modelos sincronizados')
+    })
+    .catch(err => {
+        console.error('Error al sincronizar')
+    })
+
+// DEFINIMOS MODELO QUE REPRESENTA TABLAS DE MI BD
+
+class User extends Model {}
+
+User.init({
+    Id: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         primaryKey: true,
-        allowNull: false
     },
-    name: {
+    Name: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    email: {
+    Pw: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    password: {
+    Email: {
         type: Sequelize.STRING,
-        allowNull: false
-    }
+    },
 }, {
     sequelize: dbInstance,
     modelName: 'User', // el nombre del modelo
+    tableName: 'Tabla_Usuarios',
     createdAt: false,
     updatedAt: false
 })
 
 // User.sync()
-
-dbInstance.sync()
-.then(() => {
-    console.log('Modelos sincronizados')
-})
-.catch(err => {
-    console.error('Error al sincronizar')
-})
 
 
 module.exports = {User}

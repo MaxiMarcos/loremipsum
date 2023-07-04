@@ -1,4 +1,4 @@
-// Nos conectamos a la Base de Datos
+
 const {User} = require('../models/user')
 
 const getAll = async () => {
@@ -7,4 +7,21 @@ const getAll = async () => {
     return listUsers
 }
 
-module.exports = {getAll}
+const getById = async (id) => {
+    const Users = await User.findByPk(id)
+
+    return Users
+}
+
+const createUser = async (name, pw, email) => {
+    const user = new User()
+
+    user.Name = name
+    user.Pw = pw
+    user.Email = email
+
+    const userCreated = await user.save()
+    return userCreated
+}
+
+module.exports = {getAll, getById, createUser}

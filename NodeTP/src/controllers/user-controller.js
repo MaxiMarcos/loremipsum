@@ -10,4 +10,19 @@ const getAllUsers = async (req, res) => {
     res.status(200).send(users)
 }
 
-module.exports = {getAllUsers}
+const getUserById = async (req, res) => {
+    const {id} = req.params
+    const user = await userService.getById(id)
+
+    res.status(200).send(user)
+}
+
+const createUser = async (req, res) => {
+    const {Name, Pw, Email} = req.body
+    const user = await userService.createUser(Name, Pw, Email)
+
+    res.status(200).send(user)
+}
+
+
+module.exports = {getAllUsers, getUserById, createUser}
