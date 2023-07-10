@@ -24,5 +24,22 @@ const createUser = async (req, res) => {
     res.status(200).send(user)
 }
 
+const editUser = async (req, res) => {
+    const Id = req.params.id
+    const {Name, Pw, Email } = req.body
 
-module.exports = {getAllUsers, getUserById, createUser}
+    const nuevoUser = await userService.editUser(Id, Name, Pw, Email)
+    
+    res.status(200).send(nuevoUser)
+}
+
+const deleteUser = async (req, res) => {
+    const id = req.params.id
+
+    await userService.deleteUser(id)
+    
+    res.status(200).send(`Se ha borrado el usuario ${id} exitosamente`)
+}
+
+
+module.exports = {getAllUsers, getUserById, createUser, editUser, deleteUser}

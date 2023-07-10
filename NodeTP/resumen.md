@@ -21,3 +21,9 @@ RAW QUERIES =>
 * PASSPORT => Middleware Externo
 Sirve para hacer validaciones y que estas no tengan que estar en el cuerpo.
 function miMiddleware(req, res, next) => cuando hay aprobación funciona el Next.
+
+------------------------------------------------------------------------------------------------
+
+Algunos MÓDULOS importantes:
+Globals, HTTP, Fyle Steam, Process, Timers, y Módulos importados/exportados(require/exports) dentro del proyecto.
+

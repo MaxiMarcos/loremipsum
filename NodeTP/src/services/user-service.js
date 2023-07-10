@@ -24,4 +24,32 @@ const createUser = async (name, pw, email) => {
     return userCreated
 }
 
-module.exports = {getAll, getById, createUser}
+    const editUser = async (id, name, pw, email) => {
+    
+        const user = await getById(id)
+    
+        if (name) {
+            user.Name = name
+        }
+        if (pw) {
+            user.Pw = pw
+        }
+        if (email) {
+            user.Email = email
+        }
+    
+        const userEdited = await user.save()
+        return userEdited
+
+
+// VOLVER A INTENTAR CON EL findIndex
+}
+
+const deleteUser = async (id) => {
+    
+    const user = await getById(id)
+
+    await user.destroy()
+}
+
+module.exports = {getAll, getById, createUser, editUser, deleteUser}
